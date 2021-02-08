@@ -2,3 +2,16 @@
     display: flex;
     justify-content: center;
 }
+
+.jumbostyle {
+    background-color: rgb(170, 108, 170);
+    font-family: 'Exo 2', sans-serif;
+}
+
+.employee-card {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.titlestyling {
+    background-color: rgb(126, 126, 228);
+}
