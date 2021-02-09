@@ -9,8 +9,6 @@ const OUTPUT_DIR = path.resolve(__dirname, "./src");
 const outputPath = path.join(OUTPUT_DIR, "main.html");
 
 const render = require("./lib/renderhtml.js");
-// const { resolve } = require('path');
-// const { report } = require('process');
 
 function promptManager() {
 return inquirer.prompt([
