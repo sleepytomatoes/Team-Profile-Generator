@@ -1,11 +1,18 @@
-const Employee = require('./Employee');
-const Engineer = require('./Engineer');
-const Intern = require('./Intern');
-const Manager = require('./Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
 const inquirer = require('inquirer');
+const path = require('path');
 const fs = require('fs');
 
-promptManager = () => {
+const OUTPUT_DIR = path.resolve(__dirname, "./src");
+const outputPath = path.join(OUTPUT_DIR, "main.html");
+
+const render = require("./lib/renderhtml.js");
+// const { resolve } = require('path');
+// const { report } = require('process');
+
+function promptManager() {
 return inquirer.prompt([
     {
       type: 'input',
@@ -38,7 +45,7 @@ return inquirer.prompt([
     
     },
     {
-        type: 'checkbox',
+        type: 'list',
         message: 'Select an option to move forward',
         name: 'moreOptions',
         choices: ['add an Engineer', 'add an Intern', 'finish building team']
@@ -48,7 +55,7 @@ return inquirer.prompt([
 }
 
 
-  promptEngineer = () => {
+  function promptEngineer() {
       return inquirer.prompt([
     {
       type: 'input',
@@ -76,7 +83,7 @@ return inquirer.prompt([
         name: 'github'
       },
       {
-        type: 'checkbox',
+        type: 'list',
         message: 'Select an option to move forward',
         name: 'moreOptions',
         choices: ['add an Engineer', 'add an Intern', 'finish building team']
@@ -84,7 +91,7 @@ return inquirer.prompt([
   ])
 }
 
-promptIntern = () => {
+function promptIntern() {
  return inquirer.prompt([
     {
       type: 'input',
@@ -112,7 +119,7 @@ promptIntern = () => {
         name: 'school'
       },
       {
-        type: 'checkbox',
+        type: 'list',
         message: 'Select an option to move forward',
         name: 'moreOptions',
         choices: ['add an Engineer', 'add an Intern', 'finish building team']
@@ -122,7 +129,7 @@ promptIntern = () => {
 
 const team = [];
 
-createManager = () => {
+function createManager() {
     promptManager().then(function(response) {
         const manager = new Manager(response.name, response.email, response.id, response.managerOfficeNo)
 
@@ -136,7 +143,7 @@ createManager = () => {
             team.push(manager);
 
 
-            fs.writeFile("./output/team.html", render(team), function(err) {
+            fs.writeFile("./dist/main.html", render(team), function(err) {
                 if(err) throw err;
     
             });
@@ -145,9 +152,9 @@ createManager = () => {
     })
 }
 
-createEngineer = () => {
+function createEngineer() {
     promptEngineer().then(function(response) {
-        const engineer = new Engineer(reponse.name, response.email, response.id, response.github)
+        const engineer = new Engineer(response.name, response.email, response.id, response.github)
 
         if(response.moreOptions == 'add an Engineer') {
             team.push(engineer);
@@ -158,7 +165,7 @@ createEngineer = () => {
         } else if(response.moreOptions == 'finish building team') {
             team.push(engineer);
 
-            fs.writeFile("./output/team.html", render(team), function(err) {
+            fs.writeFile("./dist/main.html", render(team), function(err) {
                 if(err) throw err;
             });
             return
@@ -166,7 +173,7 @@ createEngineer = () => {
     })
 }
 
-createIntern = () => {
+function createIntern() {
     promptIntern().then(function(response) {
         const intern = new Intern(response.name, response.email, response.id, response.school)
 
@@ -179,7 +186,7 @@ createIntern = () => {
         } else if(response.moreOptions == 'finish building team') {
             team.push(intern);
 
-            fs.writeFile("./output/team.html", render(team), function(err) {
+            fs.writeFile("./dist/main.html", render(team), function(err) {
                 if(err) throw err;
             });
             return
