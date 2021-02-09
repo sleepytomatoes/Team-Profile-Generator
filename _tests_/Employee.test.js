@@ -10,42 +10,7 @@ describe("Employee", () => {
         expect(testEmployee.email).toEqual("okay@gmail.com");
         expect(testEmployee.id).toEqual(8);
     });
-
-    it("should throw an error if no arguments are provided", () => {
-        const ghostEmployee = () => new Employee();
-
-        expect(ghostEmployee).toThrow();
-    })
-
-    it("should throw an error if email is not a string", () => {
-        const ghostEmployee = () => new Employee("Josh", 6, 4);
-  
-        const err = new Error("Expected email to be a string");
-
-        expect(ghostEmployee).toThrowError(err);
-      });
-  
-      it("should throw an error if 'name' is not a string", () => {
-        const ghostEmployee = () => new Employee(3, "okay@gmail.com", 9);
-        const err = new Error("Expected parameter 'name' to be a non-empty string");
-  
-        expect(ghostEmployee).toThrowError(err);
-      });
-  
-      it("should throw an error if id is not a number", () => {
-        const ghostEmployee = () => new Employee("Peter", "okay@gmail.com", "6");
-        const err = new Error("Expected parameter id to be a non-negative number");
-  
-        expect(ghostEmployee).toThrowError(err);
-      });
-  
-      it("should throw an error if 'id' is less than 0", () => {
-        const ghostEmployee = () => new Employee("Elliot", "okay@gmail.com", -1);
-        const err = new Error("Expected parameter 'age' to be a non-negative number");
-  
-        expect(ghostEmployee).toThrowError(err);
-      });
-    });
+  });
 
     describe("Employee methods", () => {
         it("should return the Employees name", () => {
