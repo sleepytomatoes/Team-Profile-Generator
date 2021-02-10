@@ -1,6 +1,7 @@
 const Employee = require('../lib/Employee')
 
 describe("Employee", () => {
+    // this first test makes sure that values are stored correctly when passed in as arguments.
     describe("Initialization", () => {
         it("should create a new Employee object with a name, id, and email if valid arguments are provided", () => {
 
@@ -13,6 +14,7 @@ describe("Employee", () => {
   });
 
     describe("Employee methods", () => {
+        // the following three tests make sure the methods on the Employee class return the desired value.
         it("should return the Employees name", () => {
             const testName = "Fabio";
             const employee = new Employee(testName, "okay@gmail.com", 5);

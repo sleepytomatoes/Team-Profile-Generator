@@ -1,12 +1,14 @@
+// dependencies declared
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const inquirer = require('inquirer');
-const path = require('path');
 const fs = require('fs');
 
 const render = require("./lib/renderhtml.js");
 
+// promptManager is the first function called to get our application started  
+// inquirer is used to prompt the user and each response is stored using the name keyword
 function promptManager() {
 return inquirer.prompt([
     {
@@ -49,7 +51,7 @@ return inquirer.prompt([
 
 }
 
-
+// inquirer is used to prompt the user and each response is stored using the name keyword
   function promptEngineer() {
       return inquirer.prompt([
     {
@@ -86,6 +88,7 @@ return inquirer.prompt([
   ])
 }
 
+// inquirer is used to prompt the user and each response is stored using the name keyword
 function promptIntern() {
  return inquirer.prompt([
     {
@@ -122,8 +125,13 @@ function promptIntern() {
   ])
 }
 
+// team will be the array that will contain our classes with responses stored as values
 const team = [];
 
+// the createManager function takes the responses from our prompt and creates an object Manager, assigning the responses to the 
+// corresponding values declared in those object classes.
+// createManager also tells inquirer what to do depending on the response from the user when it reaches 'moreOptions'.
+// regardless of the response, the Manager object is pushed into the array to be stored.
 function createManager() {
     promptManager().then(function(response) {
         const manager = new Manager(response.name, response.email, response.id, response.managerOfficeNo)
@@ -137,7 +145,7 @@ function createManager() {
         } else if(response.moreOptions == 'finish building team') {
             team.push(manager);
 
-
+          // once the user chooses 'finish building team', the html file is written to the desired final destination (main.html)
             fs.writeFile("./dist/main.html", render(team), function(err) {
                 if(err) throw err;
     

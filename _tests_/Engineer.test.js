@@ -1,6 +1,7 @@
 const Engineer = require('../lib/Engineer')
 
 describe("Engineer", () => {
+    // this first test makes sure that values are stored correctly when passed in as arguments.
     describe("Initialization via constructor", () => {
         it("should set github username as this.github", () => {
             const testGithub = "iheartcoding666";
@@ -11,6 +12,7 @@ describe("Engineer", () => {
     })
 
     describe("Engineer methods", () => {
+        // the following two methods are tested to make sure they return the desired value when called.
         it("getRole() should return 'Engineer'", () => {
             const testRole = "Engineer";
             const engineer = new Engineer("Alexa", "okay@gmail.com", 7, "gitusername")
