@@ -16,7 +16,8 @@ When you are finished adding employees, choose the option 'finish building team'
 
 ## Credits
 
-
+I used this video as a reference when building the templates / template functions using regular expressions
+[youtube clip](https://www.youtube.com/watch?v=rhzKDrUiJVk)
 
 ## Tests
 
